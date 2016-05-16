@@ -1,15 +1,9 @@
 package com.smskelley.politiface.models.time;
 
-import android.util.Log;
-
 import java.util.Calendar;
 
 public class TimeModelImpl implements TimeModel {
     private Calendar calendar = Calendar.getInstance();
-
-    public TimeModelImpl() {
-        Log.d("ASDF", "CONSTRUCTING TIME MODEL!!!");
-    }
 
     @Override
     public float getHour() {

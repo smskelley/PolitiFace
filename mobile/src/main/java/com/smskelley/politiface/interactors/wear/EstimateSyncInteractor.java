@@ -41,13 +41,10 @@ public class EstimateSyncInteractor implements GoogleApiClient.ConnectionCallbac
         apiClient = createGoogleApiClient(context);
         connectClient(apiClient);
         apiClientStatusObservable
-            .doOnNext(s -> Log.d("ASDF", "Api Client Status: " + s.name()))
             .takeFirst(s -> s == Status.CONNECTED)
             .subscribe(notUsed -> {
                 this.estimateByDateObservable
                     .observeOn(Schedulers.io())
-                    .doOnNext(e -> Log.d("ASDF",
-                        "EstimateSyncInteractor: est for date: " + e.date))
                     .subscribe(this::sendEstimate);
             });
     }

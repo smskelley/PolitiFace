@@ -40,7 +40,6 @@ public class EstimateModelImpl implements ResultCallback<DataItemBuffer>,Estimat
 
   @Override
   public void update() {
-    Log.d("ASDF", "updating estimate");
     Wearable.DataApi
         .getDataItems(
             apiClient,

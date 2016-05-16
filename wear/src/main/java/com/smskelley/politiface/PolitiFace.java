@@ -32,7 +32,6 @@ import com.smskelley.politiface.application.App;
 import com.smskelley.politiface.application.PolitiFaceApp;
 import com.smskelley.politiface.models.DaggerModels;
 import com.smskelley.politiface.models.Models;
-import com.smskelley.politiface.models.polls.EstimateModel;
 import com.smskelley.politiface.models.time.TimeModel;
 import com.smskelley.politiface.views.CanvasDrawable;
 import com.smskelley.politiface.views.DaggerViews;
@@ -96,7 +95,7 @@ public class PolitiFace extends CanvasWatchFaceService {
     private Models models;
     private Views views;
     private CanvasDrawable[] canvasDrawables;
-    private CanvasDrawable[] ambientOnlyCanvasDrawables;
+    private CanvasDrawable[] nonAmbientCanvasDrawables;
 
     @Override
     public void onCreate(SurfaceHolder holder) {
@@ -127,7 +126,7 @@ public class PolitiFace extends CanvasWatchFaceService {
           views.hourHand(),
           views.minuteHand(),
       };
-      ambientOnlyCanvasDrawables = new CanvasDrawable[] {
+      nonAmbientCanvasDrawables = new CanvasDrawable[] {
           views.secondHand(),
           views.cap(),
       };
@@ -196,8 +195,8 @@ public class PolitiFace extends CanvasWatchFaceService {
       }
 
       if (!mAmbient) {
-        for (int i = 0; i < ambientOnlyCanvasDrawables.length; i++) {
-          ambientOnlyCanvasDrawables[i].draw(canvas, centerX, centerY);
+        for (int i = 0; i < nonAmbientCanvasDrawables.length; i++) {
+          nonAmbientCanvasDrawables[i].draw(canvas, centerX, centerY);
         }
       }
     }

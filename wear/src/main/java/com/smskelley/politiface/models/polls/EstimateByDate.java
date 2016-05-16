@@ -19,7 +19,6 @@ public class EstimateByDate {
   private final List<Estimate> estimates = new ArrayList<>();
 
   public void setDate(String date) {
-    Log.d("ASDF", "Setting date: " + date);
     this.date = date;
   }
 
@@ -28,7 +27,6 @@ public class EstimateByDate {
   }
 
   public void addEstimate(Estimate estimate) {
-    Log.d("ASDF", "Adding estimate: " + estimate.person + " - " + estimate.probability);
     if (CLINTON.equals(estimate.person.toLowerCase())) {
       clinton = estimate.probability;
     } else if (TRUMP.equals(estimate.person.toLowerCase())) {

@@ -14,5 +14,5 @@ import dagger.Component;
     dependencies = App.class)
 public interface Models {
     TimeModel time();
-    EstimateModel estimateModel();
+    EstimateModel estimate();
 }

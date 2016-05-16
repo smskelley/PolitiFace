@@ -53,7 +53,8 @@ public class Background implements CanvasDrawable {
           public void call(EstimateByDate estimateByDate) {
             Background.this.estimate = estimateByDate;
           }
-        }).subscribe();
+        })
+        .subscribe();
   }
 
   @Override
@@ -105,9 +106,6 @@ public class Background implements CanvasDrawable {
 
     float percent = left / total;
 
-/*    Log.d("ASDF", String.format(
-        "Midpoint: left: %f, right: %f, percent = %.2f, midPoint = %.2f",
-        left, right, percent, percent * centerX));*/
     return percent * width;
   }
 
