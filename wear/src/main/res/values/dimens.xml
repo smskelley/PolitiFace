@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="cap_radius">10dp</dimen>
+    <dimen name="hour_hand_width">10dp</dimen>
+    <dimen name="minute_hand_width">7dp</dimen>
+    <dimen name="second_hand_width">5dp</dimen>
+
+    <dimen name="shadow_x">4dp</dimen>
+    <dimen name="shadow_y">4dp</dimen>
+    <dimen name="shadow_radius">4dp</dimen>
+</resources>

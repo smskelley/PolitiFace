@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#000</color>
+    <color name="shadow">#60000000</color>
+
+    <color name="cap_color">#CCC</color>
+
+    <color name="hour_hand">#FFF</color>
+    <color name="minute_hand">#FFF</color>
+    <color name="second_hand">#FFF</color>
+
+
+    <color name="republican">#E91D0E</color>
+    <color name="democrat">#290EE9</color>
+</resources>
