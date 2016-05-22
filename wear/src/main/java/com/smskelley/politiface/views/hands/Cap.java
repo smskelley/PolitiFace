@@ -29,7 +29,7 @@ public class Cap implements CanvasDrawable {
     }
 
     @Override
-    public void draw(Canvas canvas, float centerX, float centerY) {
+    public void draw(Canvas canvas, boolean isAmbient, float centerY, float centerX) {
         canvas.drawCircle(centerX, centerY, radius, paint);
     }
 

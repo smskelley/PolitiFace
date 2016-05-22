@@ -2,6 +2,7 @@ package com.smskelley.politiface.views.background;
 
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.ColorInt;
 
@@ -19,6 +20,7 @@ public class Background implements CanvasDrawable {
   private final EstimateModel estimateModel;
   private final Paint rightPaint;
   private final Paint leftPaint;
+  private final Paint ambientPaint;
   private final int shadowRadius;
   private final int shadowX;
   @ColorInt private final int shadowColor;
@@ -35,6 +37,9 @@ public class Background implements CanvasDrawable {
 
     leftPaint = new Paint();
     leftPaint.setColor(res.getColor(R.color.democrat));
+
+    ambientPaint = new Paint();
+    ambientPaint.setColor(Color.BLACK);
 
     shadowRadius = res.getDimensionPixelOffset(R.dimen.shadow_radius);
     shadowX = res.getDimensionPixelOffset(R.dimen.shadow_x);
@@ -58,7 +63,11 @@ public class Background implements CanvasDrawable {
   }
 
   @Override
-  public void draw(Canvas canvas, float centerX, float centerY) {
+  public void draw(Canvas canvas, boolean isAmbient, float centerY, float centerX) {
+    if (isAmbient) {
+      canvas.drawRect(0f, 0f, 2*centerX, 2*centerY, ambientPaint);
+      return;
+    }
 
     float midPoint = getMidPoint(canvas.getWidth());
 

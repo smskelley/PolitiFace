@@ -14,8 +14,8 @@ public class EstimateByDate {
   private static final String TRUMP = "trump";
 
   private String date;
-  private float clinton;
-  private float trump;
+  private float clinton = 0.5f;
+  private float trump = 0.5f;
   private final List<Estimate> estimates = new ArrayList<>();
 
   public void setDate(String date) {

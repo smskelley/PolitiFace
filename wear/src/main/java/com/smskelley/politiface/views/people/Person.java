@@ -30,7 +30,11 @@ public abstract class Person implements CanvasDrawable {
   }
 
   @Override
-  public void draw(Canvas canvas, float centerX, float centerY) {
+  public void draw(Canvas canvas, boolean isAmbient, float centerY, float centerX) {
+    if (isAmbient) {
+      return;
+    }
+
     if (lastCenterX == centerX) {
       getDrawable().draw(canvas);
       return;

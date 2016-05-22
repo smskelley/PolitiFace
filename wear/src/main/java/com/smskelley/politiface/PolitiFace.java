@@ -95,7 +95,6 @@ public class PolitiFace extends CanvasWatchFaceService {
     private Models models;
     private Views views;
     private CanvasDrawable[] canvasDrawables;
-    private CanvasDrawable[] nonAmbientCanvasDrawables;
 
     @Override
     public void onCreate(SurfaceHolder holder) {
@@ -125,8 +124,6 @@ public class PolitiFace extends CanvasWatchFaceService {
           views.trump(),
           views.hourHand(),
           views.minuteHand(),
-      };
-      nonAmbientCanvasDrawables = new CanvasDrawable[] {
           views.secondHand(),
           views.cap(),
       };
@@ -140,11 +137,15 @@ public class PolitiFace extends CanvasWatchFaceService {
 
     @Override
     public void onApplyWindowInsets(WindowInsets insets) {
-      super.onApplyWindowInsets(insets);
+      int chinSize = insets.getStableInsetBottom();
+      boolean isRound = insets.isRound();
+
       for (CanvasDrawable drawable : canvasDrawables) {
-        drawable.setChinSizePx(insets.getSystemWindowInsetBottom());
-        drawable.setIsRound(insets.isRound());
+        drawable.setChinSizePx(chinSize);
+        drawable.setIsRound(isRound);
       }
+
+      super.onApplyWindowInsets(insets);
     }
 
     @Override
@@ -178,9 +179,7 @@ public class PolitiFace extends CanvasWatchFaceService {
       // Draw the background.
       if (isInAmbientMode()) {
         canvas.drawColor(Color.BLACK);
-      }/* else {
-        canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), mBackgroundPaint);
-      }*/
+      }
 
       timeModel.update(System.currentTimeMillis());
 
@@ -191,13 +190,7 @@ public class PolitiFace extends CanvasWatchFaceService {
       float centerY = bounds.height() / 2f;
 
       for (int i = 0; i < canvasDrawables.length; i++) {
-        canvasDrawables[i].draw(canvas, centerX, centerY);
-      }
-
-      if (!mAmbient) {
-        for (int i = 0; i < nonAmbientCanvasDrawables.length; i++) {
-          nonAmbientCanvasDrawables[i].draw(canvas, centerX, centerY);
-        }
+        canvasDrawables[i].draw(canvas, mAmbient, centerY, centerX);
       }
     }
 

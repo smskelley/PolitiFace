@@ -29,4 +29,9 @@ public class MinuteHand extends WatchHand {
     protected float getLength() {
         return LENGTH;
     }
+
+  @Override
+  protected boolean shouldDrawInAmbient() {
+    return true;
+  }
 }

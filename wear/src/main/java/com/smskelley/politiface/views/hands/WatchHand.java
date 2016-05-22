@@ -35,7 +35,10 @@ public abstract class WatchHand implements CanvasDrawable {
     }
 
     @Override
-    public void draw(Canvas canvas, float centerX, float centerY) {
+    public void draw(Canvas canvas, boolean isAmbient, float centerY, float centerX) {
+        if (!shouldDrawInAmbient() && isAmbient) {
+            return;
+        }
         if (isRound) {
             drawRound(canvas, centerX, centerY);
         } else {
@@ -78,6 +81,7 @@ public abstract class WatchHand implements CanvasDrawable {
         this.isRound = isRound;
     }
 
+
     @Override
     public void setChinSizePx(int chinSize) {
         this.chinSizePx = chinSize;
@@ -85,4 +89,5 @@ public abstract class WatchHand implements CanvasDrawable {
 
     protected abstract float getRotation();
     protected abstract float getLength();
+    protected abstract boolean shouldDrawInAmbient();
 }
