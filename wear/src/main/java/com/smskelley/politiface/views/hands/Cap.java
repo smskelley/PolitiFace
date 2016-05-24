@@ -10,6 +10,7 @@ import com.smskelley.politiface.views.CanvasDrawable;
 import javax.inject.Inject;
 
 /**
+ * A small circle above hands where they intersect.
  */
 public class Cap implements CanvasDrawable {
 
