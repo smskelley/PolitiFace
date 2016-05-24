@@ -7,8 +7,6 @@ import com.smskelley.politiface.models.time.TimeModel;
 
 import javax.inject.Inject;
 
-/**
- */
 public class SecondHand extends WatchHand {
 
   private static final float LENGTH = 0.45f;

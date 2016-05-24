@@ -8,13 +8,11 @@ import com.smskelley.politiface.R;
 import com.smskelley.politiface.models.time.TimeModel;
 import com.smskelley.politiface.views.CanvasDrawable;
 
-/**
- */
 public abstract class WatchHand implements CanvasDrawable {
 
   protected final TimeModel timeModel;
   /**
-   * As a percentage of screen width;
+   * As a percentage of screen width.
    */
   private final float length;
   private final Paint ambientPaint;
