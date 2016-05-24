@@ -14,10 +14,13 @@ public class MinuteHand extends WatchHand {
   private static final float LENGTH = 0.30f;
 
   @Inject
-  protected MinuteHand(Resources res, TimeModel timeModel, HandPaint handPaint) {
-    super(res, timeModel, handPaint);
-    handPaint.setColor(res.getColor(R.color.minute_hand));
-    handPaint.setStrokeWidth(res.getDimensionPixelSize(R.dimen.minute_hand_width));
+  protected MinuteHand(Resources res, TimeModel timeModel, HandPaint ambientPaint,
+                     HandPaint normalPaint) {
+    super(res, timeModel, ambientPaint, normalPaint);
+    ambientPaint.setColor(res.getColor(R.color.minute_hand));
+    ambientPaint.setStrokeWidth(res.getDimensionPixelSize(R.dimen.minute_hand_width));
+    normalPaint.setColor(res.getColor(R.color.minute_hand));
+    normalPaint.setStrokeWidth(res.getDimensionPixelSize(R.dimen.minute_hand_width));
   }
 
   @Override

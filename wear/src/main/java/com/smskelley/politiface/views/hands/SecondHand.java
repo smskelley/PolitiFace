@@ -14,10 +14,13 @@ public class SecondHand extends WatchHand {
   private static final float LENGTH = 0.45f;
 
   @Inject
-  protected SecondHand(Resources res, TimeModel timeModel, HandPaint handPaint) {
-    super(res, timeModel, handPaint);
-    handPaint.setColor(res.getColor(R.color.second_hand));
-    handPaint.setStrokeWidth(res.getDimensionPixelSize(R.dimen.second_hand_width));
+  protected SecondHand(Resources res, TimeModel timeModel, HandPaint ambientPaint,
+                     HandPaint normalPaint) {
+    super(res, timeModel, ambientPaint, normalPaint);
+    ambientPaint.setColor(res.getColor(R.color.second_hand));
+    ambientPaint.setStrokeWidth(res.getDimensionPixelSize(R.dimen.second_hand_width));
+    normalPaint.setColor(res.getColor(R.color.second_hand));
+    normalPaint.setStrokeWidth(res.getDimensionPixelSize(R.dimen.second_hand_width));
   }
 
   @Override

@@ -18,17 +18,18 @@ public abstract class WatchHand implements CanvasDrawable {
    */
   private final float length;
   private final Paint ambientPaint;
-  private final Paint shadowPaint;
+  private final Paint normalPaint;
   protected boolean isRound = false;
   protected int chinSizePx = 0;
 
   protected WatchHand(Resources res, TimeModel timeModel, HandPaint ambientPaint,
-                      HandPaint shadowPaint) {
+                      HandPaint normalPaint) {
     this.timeModel = timeModel;
     this.length = getLength();
     this.ambientPaint = ambientPaint;
-    this.shadowPaint = shadowPaint;
-    this.shadowPaint.setShadowLayer(
+    this.ambientPaint.setAntiAlias(false);
+    this.normalPaint = normalPaint;
+    this.normalPaint.setShadowLayer(
         res.getDimensionPixelOffset(R.dimen.shadow_radius),
         res.getDimensionPixelOffset(R.dimen.shadow_x),
         res.getDimensionPixelOffset(R.dimen.shadow_y),
@@ -40,7 +41,7 @@ public abstract class WatchHand implements CanvasDrawable {
     if (!shouldDrawInAmbient() && isAmbient) {
       return;
     }
-    Paint paint = isAmbient ? ambientPaint : shadowPaint;
+    Paint paint = isAmbient ? ambientPaint : normalPaint;
     if (isRound) {
       drawRound(canvas, centerX, centerY, paint);
     } else {
