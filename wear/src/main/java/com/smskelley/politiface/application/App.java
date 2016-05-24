@@ -9,6 +9,7 @@ import dagger.Component;
  */
 @Component(modules = AppModule.class)
 public interface App {
-    Context context();
-    Resources resources();
+  Context context();
+
+  Resources resources();
 }

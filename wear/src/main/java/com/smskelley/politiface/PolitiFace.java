@@ -118,7 +118,7 @@ public class PolitiFace extends CanvasWatchFaceService {
           .build();
 
       mBackgroundPaint = views.backgroundPaint();
-      canvasDrawables = new CanvasDrawable[] {
+      canvasDrawables = new CanvasDrawable[]{
           views.background(),
           views.clinton(),
           views.trump(),

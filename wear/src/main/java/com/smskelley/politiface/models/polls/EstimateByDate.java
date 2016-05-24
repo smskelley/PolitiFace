@@ -1,7 +1,5 @@
 package com.smskelley.politiface.models.polls;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,18 +10,17 @@ public class EstimateByDate {
 
   private static final String CLINTON = "clinton";
   private static final String TRUMP = "trump";
-
+  private final List<Estimate> estimates = new ArrayList<>();
   private String date;
   private float clinton = 0.5f;
   private float trump = 0.5f;
-  private final List<Estimate> estimates = new ArrayList<>();
-
-  public void setDate(String date) {
-    this.date = date;
-  }
 
   public String getDate() {
     return date;
+  }
+
+  public void setDate(String date) {
+    this.date = date;
   }
 
   public void addEstimate(Estimate estimate) {

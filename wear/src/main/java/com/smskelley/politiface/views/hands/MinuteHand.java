@@ -11,24 +11,24 @@ import javax.inject.Inject;
  */
 public class MinuteHand extends WatchHand {
 
-    private static final float LENGTH = 0.30f;
+  private static final float LENGTH = 0.30f;
 
-    @Inject
-    protected MinuteHand(Resources res, TimeModel timeModel, HandPaint handPaint) {
-        super(res, timeModel, handPaint);
-        handPaint.setColor(res.getColor(R.color.minute_hand));
-        handPaint.setStrokeWidth(res.getDimensionPixelSize(R.dimen.minute_hand_width));
-    }
+  @Inject
+  protected MinuteHand(Resources res, TimeModel timeModel, HandPaint handPaint) {
+    super(res, timeModel, handPaint);
+    handPaint.setColor(res.getColor(R.color.minute_hand));
+    handPaint.setStrokeWidth(res.getDimensionPixelSize(R.dimen.minute_hand_width));
+  }
 
-    @Override
-    protected float getRotation() {
-        return timeModel.getMinute() / 30f * (float) Math.PI;
-    }
+  @Override
+  protected float getRotation() {
+    return timeModel.getMinute() / 30f * (float) Math.PI;
+  }
 
-    @Override
-    protected float getLength() {
-        return LENGTH;
-    }
+  @Override
+  protected float getLength() {
+    return LENGTH;
+  }
 
   @Override
   protected boolean shouldDrawInAmbient() {

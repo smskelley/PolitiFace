@@ -23,14 +23,13 @@ import rx.subjects.BehaviorSubject;
 
 /**
  */
-public class EstimateModelImpl implements ResultCallback<DataItemBuffer>,EstimateModel, GoogleApiClient.ConnectionCallbacks {
+public class EstimateModelImpl implements ResultCallback<DataItemBuffer>, EstimateModel, GoogleApiClient.ConnectionCallbacks {
 
   private static final String ESTIMATE_PATH = "/estimate";
   private static final String DATE_KEY = "date";
-
+  private final GoogleApiClient apiClient;
   private BehaviorSubject<EstimateByDate> estimateByDateObservable =
       BehaviorSubject.create(EstimateByDate.EMPTY);
-  private final GoogleApiClient apiClient;
 
   @Inject
   public EstimateModelImpl(Context context) {

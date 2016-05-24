@@ -7,7 +7,7 @@ import com.smskelley.politiface.R;
 
 import javax.inject.Inject;
 
-public class Clinton extends Person{
+public class Clinton extends Person {
 
   private final Drawable drawable;
 

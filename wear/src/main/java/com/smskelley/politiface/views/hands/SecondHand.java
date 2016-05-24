@@ -11,27 +11,27 @@ import javax.inject.Inject;
  */
 public class SecondHand extends WatchHand {
 
-    private static final float LENGTH = 0.45f;
+  private static final float LENGTH = 0.45f;
 
-    @Inject
-    protected SecondHand(Resources res, TimeModel timeModel, HandPaint handPaint) {
-        super(res, timeModel, handPaint);
-        handPaint.setColor(res.getColor(R.color.second_hand));
-        handPaint.setStrokeWidth(res.getDimensionPixelSize(R.dimen.second_hand_width));
-    }
+  @Inject
+  protected SecondHand(Resources res, TimeModel timeModel, HandPaint handPaint) {
+    super(res, timeModel, handPaint);
+    handPaint.setColor(res.getColor(R.color.second_hand));
+    handPaint.setStrokeWidth(res.getDimensionPixelSize(R.dimen.second_hand_width));
+  }
 
-    @Override
-    protected float getRotation() {
-        return timeModel.getSecond() / 30f * (float) Math.PI;
-    }
+  @Override
+  protected float getRotation() {
+    return timeModel.getSecond() / 30f * (float) Math.PI;
+  }
 
-    @Override
-    protected float getLength() {
-        return LENGTH;
-    }
+  @Override
+  protected float getLength() {
+    return LENGTH;
+  }
 
-    @Override
-    protected boolean shouldDrawInAmbient() {
-        return false;
-    }
+  @Override
+  protected boolean shouldDrawInAmbient() {
+    return false;
+  }
 }

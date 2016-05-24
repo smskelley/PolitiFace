@@ -19,18 +19,26 @@ import javax.inject.Scope;
 import dagger.Component;
 
 @Views.ViewsScope
-@Component(dependencies = { App.class, Models.class })
+@Component(dependencies = {App.class, Models.class})
 public interface Views {
-        HourHand hourHand();
-        MinuteHand minuteHand();
-        SecondHand secondHand();
+  HourHand hourHand();
 
-        Clinton clinton();
-        Trump trump();
+  MinuteHand minuteHand();
 
-        Background background();
-        BackgroundPaint backgroundPaint();
-        Cap cap();
+  SecondHand secondHand();
 
-        @Scope @Retention(RetentionPolicy.RUNTIME) @interface ViewsScope {}
+  Clinton clinton();
+
+  Trump trump();
+
+  Background background();
+
+  BackgroundPaint backgroundPaint();
+
+  Cap cap();
+
+  @Scope
+  @Retention(RetentionPolicy.RUNTIME)
+  @interface ViewsScope {
+  }
 }

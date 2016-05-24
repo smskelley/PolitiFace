@@ -17,12 +17,16 @@ import dagger.Provides;
 @Module
 public class ModelsModule {
 
-    @Provides @Singleton static TimeModel provideTimeModel() {
-        return new TimeModelImpl();
-    }
+  @Provides
+  @Singleton
+  static TimeModel provideTimeModel() {
+    return new TimeModelImpl();
+  }
 
-    @Provides @Singleton static EstimateModel provideEstimateModel(Context context) {
-        return new EstimateModelImpl(context);
-    }
+  @Provides
+  @Singleton
+  static EstimateModel provideEstimateModel(Context context) {
+    return new EstimateModelImpl(context);
+  }
 
 }

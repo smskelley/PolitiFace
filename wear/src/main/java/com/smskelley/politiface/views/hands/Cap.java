@@ -13,29 +13,31 @@ import javax.inject.Inject;
  */
 public class Cap implements CanvasDrawable {
 
-    Paint paint;
-    float radius;
+  Paint paint;
+  float radius;
 
-    @Inject
-    public Cap(Resources res, HandPaint handPaint) {
-        radius = res.getDimensionPixelSize(R.dimen.cap_radius);
-        paint = handPaint;
-        paint.setColor(res.getColor(R.color.cap_color));
-        paint.setShadowLayer(
-            res.getDimensionPixelOffset(R.dimen.shadow_radius),
-            res.getDimensionPixelOffset(R.dimen.shadow_x),
-            res.getDimensionPixelOffset(R.dimen.shadow_y),
-            res.getColor(R.color.shadow));
-    }
+  @Inject
+  public Cap(Resources res, HandPaint handPaint) {
+    radius = res.getDimensionPixelSize(R.dimen.cap_radius);
+    paint = handPaint;
+    paint.setColor(res.getColor(R.color.cap_color));
+    paint.setShadowLayer(
+        res.getDimensionPixelOffset(R.dimen.shadow_radius),
+        res.getDimensionPixelOffset(R.dimen.shadow_x),
+        res.getDimensionPixelOffset(R.dimen.shadow_y),
+        res.getColor(R.color.shadow));
+  }
 
-    @Override
-    public void draw(Canvas canvas, boolean isAmbient, float centerY, float centerX) {
-        canvas.drawCircle(centerX, centerY, radius, paint);
-    }
+  @Override
+  public void draw(Canvas canvas, boolean isAmbient, float centerY, float centerX) {
+    canvas.drawCircle(centerX, centerY, radius, paint);
+  }
 
-    @Override
-    public void setChinSizePx(int chinSize) {}
+  @Override
+  public void setChinSizePx(int chinSize) {
+  }
 
-    @Override
-    public void setIsRound(boolean isRound) {}
+  @Override
+  public void setIsRound(boolean isRound) {
+  }
 }

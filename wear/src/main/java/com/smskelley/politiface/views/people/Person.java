@@ -51,10 +51,12 @@ public abstract class Person implements CanvasDrawable {
   }
 
   @Override
-  public void setChinSizePx(int chinSize) {}
+  public void setChinSizePx(int chinSize) {
+  }
 
   @Override
-  public void setIsRound(boolean isRound) {}
+  public void setIsRound(boolean isRound) {
+  }
 
   protected int getWidth(float centerX) {
     return (int) (2 * centerX * SIZE_PERCENT);

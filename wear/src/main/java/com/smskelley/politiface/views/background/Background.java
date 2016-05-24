@@ -23,7 +23,8 @@ public class Background implements CanvasDrawable {
   private final Paint ambientPaint;
   private final int shadowRadius;
   private final int shadowX;
-  @ColorInt private final int shadowColor;
+  @ColorInt
+  private final int shadowColor;
 
 
   private EstimateByDate estimate = EstimateByDate.EMPTY;
@@ -65,7 +66,7 @@ public class Background implements CanvasDrawable {
   @Override
   public void draw(Canvas canvas, boolean isAmbient, float centerY, float centerX) {
     if (isAmbient) {
-      canvas.drawRect(0f, 0f, 2*centerX, 2*centerY, ambientPaint);
+      canvas.drawRect(0f, 0f, 2 * centerX, 2 * centerY, ambientPaint);
       return;
     }
 
@@ -119,8 +120,10 @@ public class Background implements CanvasDrawable {
   }
 
   @Override
-  public void setChinSizePx(int chinSize) {}
+  public void setChinSizePx(int chinSize) {
+  }
 
   @Override
-  public void setIsRound(boolean isRound) {}
+  public void setIsRound(boolean isRound) {
+  }
 }

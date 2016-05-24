@@ -10,19 +10,19 @@ import dagger.Provides;
  */
 @Module
 public class AppModule {
-    private final PolitiFaceApp app;
+  private final PolitiFaceApp app;
 
-    public AppModule(PolitiFaceApp politiFaceApp) {
-        this.app = politiFaceApp;
-    }
+  public AppModule(PolitiFaceApp politiFaceApp) {
+    this.app = politiFaceApp;
+  }
 
-    @Provides
-    public Context provideContext() {
-        return app;
-    }
+  @Provides
+  public Context provideContext() {
+    return app;
+  }
 
-    @Provides
-    public Resources provideResources() {
-        return app.getResources();
-    }
+  @Provides
+  public Resources provideResources() {
+    return app.getResources();
+  }
 }

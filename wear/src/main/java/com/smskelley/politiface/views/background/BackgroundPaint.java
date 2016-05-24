@@ -10,11 +10,11 @@ import javax.inject.Inject;
 
 public class BackgroundPaint extends Paint {
 
-    @Inject
-    public BackgroundPaint(Context context) {
-        super();
+  @Inject
+  public BackgroundPaint(Context context) {
+    super();
 
-        Resources res = context.getResources();
-        setColor(res.getColor(R.color.background));
-    }
+    Resources res = context.getResources();
+    setColor(res.getColor(R.color.background));
+  }
 }

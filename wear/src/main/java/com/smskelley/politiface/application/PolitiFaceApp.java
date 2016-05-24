@@ -6,17 +6,17 @@ import android.app.Application;
  */
 public class PolitiFaceApp extends Application {
 
-    private App app;
+  private App app;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        app = DaggerApp.builder()
-                .appModule(new AppModule(this))
-                .build();
-    }
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    app = DaggerApp.builder()
+        .appModule(new AppModule(this))
+        .build();
+  }
 
-    public App component() {
-        return app;
-    }
+  public App component() {
+    return app;
+  }
 }
