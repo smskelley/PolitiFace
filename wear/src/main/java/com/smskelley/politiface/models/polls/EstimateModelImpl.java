@@ -28,8 +28,8 @@ public class EstimateModelImpl implements ResultCallback<DataItemBuffer>, Estima
   private static final String ESTIMATE_PATH = "/estimate";
   private static final String DATE_KEY = "date";
   private final GoogleApiClient apiClient;
-  private BehaviorSubject<EstimateByDate> estimateByDateObservable =
-      BehaviorSubject.create(EstimateByDate.EMPTY);
+  private BehaviorSubject<EstimateOnDate> estimateByDateObservable =
+      BehaviorSubject.create(EstimateOnDate.EMPTY);
 
   @Inject
   public EstimateModelImpl(Context context) {
@@ -50,7 +50,7 @@ public class EstimateModelImpl implements ResultCallback<DataItemBuffer>, Estima
   }
 
   @Override
-  public Observable<EstimateByDate> getEstimateByDate() {
+  public Observable<EstimateOnDate> getEstimateByDate() {
     return estimateByDateObservable.asObservable();
   }
 
@@ -67,15 +67,15 @@ public class EstimateModelImpl implements ResultCallback<DataItemBuffer>, Estima
     for (DataItem dataItem : dataItems) {
       Log.d("ASDF", "Got dataitem on path: " + dataItem.getUri().getPath());
       DataMap dataMap = DataMapItem.fromDataItem(dataItem).getDataMap();
-      EstimateByDate estimateByDate = new EstimateByDate();
+      EstimateOnDate estimateOnDate = new EstimateOnDate();
       for (String key : dataMap.keySet()) {
         if (DATE_KEY.equals(key)) {
-          estimateByDate.setDate(dataMap.getString(key));
+          estimateOnDate.setDate(dataMap.getString(key));
         } else {
-          estimateByDate.addEstimate(new EstimateByDate.Estimate(key, dataMap.getFloat(key)));
+          estimateOnDate.addEstimate(new EstimateOnDate.Estimate(key, dataMap.getFloat(key)));
         }
       }
-      estimateByDateObservable.onNext(estimateByDate);
+      estimateByDateObservable.onNext(estimateOnDate);
     }
   }
 

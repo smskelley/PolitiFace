@@ -5,8 +5,8 @@ import java.util.List;
 
 /**
  */
-public class EstimateByDate {
-  public static final EstimateByDate EMPTY = new EstimateByDate();
+public class EstimateOnDate {
+  public static final EstimateOnDate EMPTY = new EstimateOnDate();
 
   private static final String CLINTON = "clinton";
   private static final String TRUMP = "trump";

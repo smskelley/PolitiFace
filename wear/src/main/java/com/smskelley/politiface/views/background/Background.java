@@ -7,7 +7,7 @@ import android.graphics.Paint;
 import android.support.annotation.ColorInt;
 
 import com.smskelley.politiface.R;
-import com.smskelley.politiface.models.polls.EstimateByDate;
+import com.smskelley.politiface.models.polls.EstimateOnDate;
 import com.smskelley.politiface.models.polls.EstimateModel;
 import com.smskelley.politiface.views.CanvasDrawable;
 
@@ -27,7 +27,7 @@ public class Background implements CanvasDrawable {
   private final int shadowColor;
 
 
-  private EstimateByDate estimate = EstimateByDate.EMPTY;
+  private EstimateOnDate estimate = EstimateOnDate.EMPTY;
 
 
   @Inject
@@ -48,16 +48,16 @@ public class Background implements CanvasDrawable {
 
     estimateModel
         .getEstimateByDate()
-        .first(new Func1<EstimateByDate, Boolean>() {
+        .first(new Func1<EstimateOnDate, Boolean>() {
           @Override
-          public Boolean call(EstimateByDate estimateByDate) {
-            return estimateByDate != EstimateByDate.EMPTY;
+          public Boolean call(EstimateOnDate estimateOnDate) {
+            return estimateOnDate != EstimateOnDate.EMPTY;
           }
         })
-        .doOnNext(new Action1<EstimateByDate>() {
+        .doOnNext(new Action1<EstimateOnDate>() {
           @Override
-          public void call(EstimateByDate estimateByDate) {
-            Background.this.estimate = estimateByDate;
+          public void call(EstimateOnDate estimateOnDate) {
+            Background.this.estimate = estimateOnDate;
           }
         })
         .subscribe();
