@@ -8,18 +8,24 @@ import com.smskelley.politiface.views.hands.Cap;
 import com.smskelley.politiface.views.hands.HourHand;
 import com.smskelley.politiface.views.hands.MinuteHand;
 import com.smskelley.politiface.views.hands.SecondHand;
-import com.smskelley.politiface.views.people.Clinton;
-import com.smskelley.politiface.views.people.Trump;
+import com.smskelley.politiface.views.people.Person;
+import com.smskelley.politiface.views.people.PeopleModule;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+import javax.inject.Named;
 import javax.inject.Scope;
 
 import dagger.Component;
 
 @Views.ViewsScope
-@Component(dependencies = {App.class, Models.class})
+@Component(
+    dependencies = {
+        App.class,
+        Models.class
+    },
+    modules = PeopleModule.class)
 public interface Views {
   HourHand hourHand();
 
@@ -27,9 +33,9 @@ public interface Views {
 
   SecondHand secondHand();
 
-  Clinton clinton();
+  @Named("clinton") Person clinton();
 
-  Trump trump();
+  @Named("trump") Person trump();
 
   Background background();
 
