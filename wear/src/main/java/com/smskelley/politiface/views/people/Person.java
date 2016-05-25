@@ -58,6 +58,7 @@ public class Person implements CanvasDrawable {
     }
 
     if (lastCenterX != centerX) {
+      lastCenterX = centerX;
       setBounds(centerX, centerY);
     }
     Rect bounds = drawable.getBounds();
