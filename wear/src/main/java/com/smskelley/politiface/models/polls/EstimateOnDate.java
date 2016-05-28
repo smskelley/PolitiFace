@@ -40,6 +40,13 @@ public class EstimateOnDate {
     return trump;
   }
 
+  /**
+   * Clinton's percent of clinton+trump, ignoring other categories.
+   */
+  public float getLeftPercent() {
+    return clinton / (clinton + trump);
+  }
+
   public List<Estimate> getEstimates() {
     return estimates;
   }

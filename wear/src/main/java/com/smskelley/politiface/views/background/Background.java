@@ -48,7 +48,7 @@ public class Background implements CanvasDrawable {
 
     estimateModel
         .getEstimateOnDate()
-        .first(new Func1<EstimateOnDate, Boolean>() {
+        .filter(new Func1<EstimateOnDate, Boolean>() {
           @Override
           public Boolean call(EstimateOnDate estimateOnDate) {
             return estimateOnDate != EstimateOnDate.EMPTY;
@@ -70,7 +70,7 @@ public class Background implements CanvasDrawable {
       return;
     }
 
-    float midPoint = getMidPoint(canvas.getWidth());
+    float midPoint = estimate.getLeftPercent() * canvas.getWidth();
 
     // We want a shadow to cast over the lower score person.
     // So, they must be drawn first and their opponent must gain a shadow.
@@ -107,16 +107,6 @@ public class Background implements CanvasDrawable {
         midPoint /* right */,
         canvas.getHeight() /* bottom */,
         leftPaint);
-  }
-
-  private float getMidPoint(float width) {
-    float left = estimate.getClinton();
-    float right = estimate.getTrump();
-    float total = left + right;
-
-    float percent = left / total;
-
-    return percent * width;
   }
 
   @Override
