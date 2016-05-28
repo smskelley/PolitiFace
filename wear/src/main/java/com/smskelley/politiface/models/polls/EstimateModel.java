@@ -8,5 +8,5 @@ import rx.Observable;
 public interface EstimateModel {
   void update();
 
-  Observable<EstimateOnDate> getEstimateByDate();
+  Observable<EstimateOnDate> getEstimateOnDate();
 }

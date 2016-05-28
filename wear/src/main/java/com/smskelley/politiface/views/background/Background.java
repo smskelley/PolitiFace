@@ -47,7 +47,7 @@ public class Background implements CanvasDrawable {
     shadowColor = res.getColor(R.color.shadow);
 
     estimateModel
-        .getEstimateByDate()
+        .getEstimateOnDate()
         .first(new Func1<EstimateOnDate, Boolean>() {
           @Override
           public Boolean call(EstimateOnDate estimateOnDate) {

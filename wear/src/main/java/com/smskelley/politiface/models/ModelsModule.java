@@ -2,8 +2,8 @@ package com.smskelley.politiface.models;
 
 import android.content.Context;
 
+import com.smskelley.politiface.models.polls.DataApiEstimateModel;
 import com.smskelley.politiface.models.polls.EstimateModel;
-import com.smskelley.politiface.models.polls.EstimateModelImpl;
 import com.smskelley.politiface.models.time.TimeModel;
 import com.smskelley.politiface.models.time.TimeModelImpl;
 
@@ -26,7 +26,7 @@ public class ModelsModule {
   @Provides
   @Singleton
   static EstimateModel provideEstimateModel(Context context) {
-    return new EstimateModelImpl(context);
+    return new DataApiEstimateModel(context);
   }
 
 }
