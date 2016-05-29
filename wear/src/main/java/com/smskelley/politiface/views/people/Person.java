@@ -43,7 +43,7 @@ public class Person implements CanvasDrawable {
     textPaint.setColor(res.getColor(R.color.text));
     textPaint.setTextAlign(Paint.Align.CENTER);
     textPaint.setTextSize(textSize);
-    textPaint.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
+    textPaint.setTypeface(Typeface.create("sans-serif", Typeface.NORMAL));
     textPaint.setShadowLayer(
         res.getDimensionPixelOffset(R.dimen.shadow_radius),
         res.getDimensionPixelOffset(R.dimen.shadow_x),
@@ -107,8 +107,8 @@ public class Person implements CanvasDrawable {
     Rect bounds = drawable.getBounds();
     canvas.drawCircle(bounds.centerX(), bounds.centerY(), bounds.width() / 2, shadowPaint);
 
-    float votePercent = 100f
-        * (position == Position.LEFT
+    float votePercent =
+        100f * (position == Position.LEFT
           ? estimate.getLeftPercent()
           : 1f - estimate.getLeftPercent());
     canvas.drawText(String.format(Locale.getDefault(), "%.1f", votePercent),
