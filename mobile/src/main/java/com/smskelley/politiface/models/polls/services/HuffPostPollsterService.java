@@ -1,4 +1,6 @@
-package com.smskelley.politiface.models.polls;
+package com.smskelley.politiface.models.polls.services;
+
+import com.smskelley.politiface.models.polls.Chart;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;

@@ -2,6 +2,8 @@ package com.smskelley.politiface.models.polls;
 
 import android.util.Log;
 
+import com.smskelley.politiface.models.polls.services.HuffPostPollsterService;
+
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -17,14 +19,15 @@ public class ChartModel {
 
     private final BehaviorSubject<Chart.EstimateByDate> estimateByDate = BehaviorSubject.create();
 
-
     public ChartModel() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
+
         service = retrofit.create(HuffPostPollsterService.class);
+
         getNewEstimate()
                 .subscribe(estimateByDate::onNext);
     }
