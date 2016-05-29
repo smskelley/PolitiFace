@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.smskelley.politiface.models.polls.services.HuffPostPollsterService;
 
+import javax.inject.Inject;
+
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -19,6 +21,7 @@ public class ChartModel {
 
     private final BehaviorSubject<Chart.EstimateByDate> estimateByDate = BehaviorSubject.create();
 
+    @Inject
     public ChartModel() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
