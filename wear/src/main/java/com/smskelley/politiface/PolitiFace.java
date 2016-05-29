@@ -48,7 +48,7 @@ public class PolitiFace extends CanvasWatchFaceService {
    * Update rate in milliseconds for interactive mode. We update once a second to advance the
    * second hand.
    */
-  private static final long TARGET_FPS = 60;
+  private static final long TARGET_FPS = 30;
 
   /**
    * Handler message id for updating the time periodically in interactive mode.
