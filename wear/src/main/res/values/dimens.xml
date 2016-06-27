@@ -7,6 +7,7 @@
 
     <dimen name="text_size">12dp</dimen>
     <dimen name="text_margin">5dp</dimen>
+    <dimen name="text_background_strike">1dp</dimen>
 
     <dimen name="shadow_x">4dp</dimen>
     <dimen name="shadow_y">4dp</dimen>

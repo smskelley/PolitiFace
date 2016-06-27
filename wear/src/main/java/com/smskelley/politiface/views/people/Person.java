@@ -2,6 +2,7 @@ package com.smskelley.politiface.views.people;
 
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
@@ -15,9 +16,6 @@ import com.smskelley.politiface.views.CanvasDrawable;
 
 import java.util.Locale;
 
-import rx.functions.Action1;
-import rx.functions.Func1;
-
 public class Person implements CanvasDrawable {
 
   protected final static float SIZE_PERCENT = 0.25f;
@@ -25,14 +23,18 @@ public class Person implements CanvasDrawable {
 
   private final Paint shadowPaint;
   private final Paint textPaint;
+  private final Paint textBackgroundPaint;
+  private final Paint textBackgroundStrokePaint;
   private final Drawable drawable;
   private final Position position;
   private final float textSize;
   private final float textMargin;
   private float lastCenterX = 0f;
+  private float embededPadding;
   private EstimateOnDate estimate = EstimateOnDate.EMPTY;
 
-  public Person(EstimateModel model, Resources res, @DrawableRes int drawableId, Position position) {
+  public Person(EstimateModel model, Resources res, @DrawableRes int drawableId,
+                Position position) {
     this.position = position;
     drawable = res.getDrawable(drawableId);
     textSize = res.getDimensionPixelSize(R.dimen.text_size);
@@ -43,12 +45,27 @@ public class Person implements CanvasDrawable {
     textPaint.setColor(res.getColor(R.color.text));
     textPaint.setTextAlign(Paint.Align.CENTER);
     textPaint.setTextSize(textSize);
+    textPaint.setElegantTextHeight(false);
     textPaint.setTypeface(Typeface.create("sans-serif", Typeface.NORMAL));
     textPaint.setShadowLayer(
         res.getDimensionPixelOffset(R.dimen.shadow_radius),
         res.getDimensionPixelOffset(R.dimen.shadow_x),
         res.getDimensionPixelOffset(R.dimen.shadow_y),
         res.getColor(R.color.shadow));
+
+    textBackgroundPaint = new Paint();
+    textBackgroundPaint.setAntiAlias(true);
+    textBackgroundPaint.setColor(res.getColor(R.color.text_background));
+    textBackgroundPaint.setPathEffect(new CornerPathEffect(textMargin));
+    textBackgroundPaint.setStyle(Paint.Style.FILL);
+    textBackgroundStrokePaint = new Paint();
+    textBackgroundStrokePaint.setAntiAlias(true);
+    textBackgroundStrokePaint.setColor(res.getColor(R.color.text_background_stroke));
+    textBackgroundStrokePaint.setPathEffect(new CornerPathEffect(textMargin));
+    textBackgroundStrokePaint.setStyle(Paint.Style.STROKE);
+    textBackgroundStrokePaint.setStrokeWidth(
+        res.getDimensionPixelSize(R.dimen.text_background_strike));
+
 
     shadowPaint = new Paint();
     shadowPaint.setAntiAlias(true);
@@ -61,18 +78,8 @@ public class Person implements CanvasDrawable {
 
     model
         .getEstimateOnDate()
-        .filter(new Func1<EstimateOnDate, Boolean>() {
-          @Override
-          public Boolean call(EstimateOnDate estimateOnDate) {
-            return estimateOnDate != EstimateOnDate.EMPTY;
-          }
-        })
-        .doOnNext(new Action1<EstimateOnDate>() {
-          @Override
-          public void call(EstimateOnDate estimateOnDate) {
-            Person.this.estimate = estimateOnDate;
-          }
-        })
+        .filter(estimateOnDate -> estimateOnDate != EstimateOnDate.EMPTY)
+        .doOnNext(estimateOnDate -> Person.this.estimate = estimateOnDate)
         .subscribe();
   }
 
@@ -80,15 +87,16 @@ public class Person implements CanvasDrawable {
 
     int screenWidth = (int) (centerX * 2);
     int imgWidth = getWidth(centerX);
-    int border = (int) (centerX * 2 * MARGIN_PERCENT);
+    int margin = (int) (screenWidth * MARGIN_PERCENT);
     int top = (int) (centerY - imgWidth / 2);
+    embededPadding = imgWidth / 18f;
 
     switch (position) {
       case LEFT:
-        drawable.setBounds(border, top, border + imgWidth, top + imgWidth);
+        drawable.setBounds(margin, top, margin + imgWidth, top + imgWidth);
         break;
       case RIGHT:
-        int right = screenWidth - border;
+        int right = screenWidth - margin;
         drawable.setBounds(right - imgWidth, top, right, top + imgWidth);
         break;
     }
@@ -105,14 +113,41 @@ public class Person implements CanvasDrawable {
       setBounds(centerX, centerY);
     }
     Rect bounds = drawable.getBounds();
-    canvas.drawCircle(bounds.centerX(), bounds.centerY(), bounds.width() / 2, shadowPaint);
 
+    // number string
     float votePercent =
         100f * (position == Position.LEFT
-          ? estimate.getLeftPercent()
-          : 1f - estimate.getLeftPercent());
-    canvas.drawText(String.format(Locale.getDefault(), "%.1f", votePercent),
-        bounds.centerX(), bounds.bottom + textSize + textMargin, textPaint);
+            ? estimate.getLeftPercent()
+            : 1f - estimate.getLeftPercent());
+    String numberString = String.format(Locale.getDefault(), "%.1f", votePercent);
+    Rect textBounds = new Rect();
+    textPaint.getTextBounds(numberString, 0, numberString.length(), textBounds);
+
+    // number bg
+    canvas.drawRect(
+        bounds.centerX() - textBounds.centerX() - textMargin /*left*/,
+        bounds.centerY() /*top*/,
+        bounds.centerX() + textBounds.centerX() + textMargin /*right*/,
+        bounds.bottom + textSize + 2*textMargin /*bot*/,
+        textBackgroundPaint
+    );
+    canvas.drawRect(
+        bounds.centerX() - textBounds.centerX() - textMargin /*left*/,
+        bounds.centerY() /*top*/,
+        bounds.centerX() + textBounds.centerX() + textMargin /*right*/,
+        bounds.bottom + textSize + 2*textMargin /*bot*/,
+        textBackgroundStrokePaint
+    );
+
+    // number
+    canvas.drawText(numberString,
+        bounds.centerX() /* x (center) */,
+        bounds.bottom + textSize + textMargin - embededPadding /* y (bottom) */,
+        textPaint);
+
+    // avatar shadow
+    canvas.drawCircle(bounds.centerX(), bounds.centerY(), bounds.width() / 2, shadowPaint);
+    // avatar
     drawable.draw(canvas);
   }
 
