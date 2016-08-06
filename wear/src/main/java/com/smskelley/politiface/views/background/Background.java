@@ -7,8 +7,8 @@ import android.graphics.Paint;
 import android.support.annotation.ColorInt;
 
 import com.smskelley.politiface.R;
-import com.smskelley.politiface.models.polls.EstimateOnDate;
-import com.smskelley.politiface.models.polls.EstimateModel;
+import com.smskelley.politilib.models.polls.EstimateOnDate;
+import com.smskelley.politilib.models.polls.EstimateModel;
 import com.smskelley.politiface.views.CanvasDrawable;
 
 import javax.inject.Inject;

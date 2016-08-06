@@ -28,11 +28,11 @@ import android.support.wearable.watchface.WatchFaceStyle;
 import android.view.SurfaceHolder;
 import android.view.WindowInsets;
 
-import com.smskelley.politiface.application.App;
+import com.smskelley.politilib.application.App;
 import com.smskelley.politiface.application.PolitiFaceApp;
-import com.smskelley.politiface.models.DaggerModels;
-import com.smskelley.politiface.models.Models;
-import com.smskelley.politiface.models.time.TimeModel;
+import com.smskelley.politilib.models.DaggerModels;
+import com.smskelley.politilib.models.Models;
+import com.smskelley.politilib.models.time.TimeModel;
 import com.smskelley.politiface.views.CanvasDrawable;
 import com.smskelley.politiface.views.DaggerViews;
 import com.smskelley.politiface.views.Views;
@@ -44,16 +44,12 @@ import java.lang.ref.WeakReference;
  * devices with low-bit ambient mode, the hands are drawn without anti-aliasing in ambient mode.
  */
 public class PolitiFace extends CanvasWatchFaceService {
-  /**
-   * Update rate in milliseconds for interactive mode. We update once a second to advance the
-   * second hand.
-   */
-  private static final long TARGET_FPS = 30;
 
   /**
    * Handler message id for updating the time periodically in interactive mode.
    */
   private static final int MSG_UPDATE_TIME = 0;
+  private static final long TARGET_FPS = 30;
 
   @Override
   public Engine onCreateEngine() {

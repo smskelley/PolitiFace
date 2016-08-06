@@ -10,8 +10,9 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 
 import com.smskelley.politiface.R;
-import com.smskelley.politiface.models.polls.EstimateModel;
-import com.smskelley.politiface.models.polls.EstimateOnDate;
+import com.smskelley.politilib.models.polls.ChartModel;
+import com.smskelley.politilib.models.polls.EstimateModel;
+import com.smskelley.politilib.models.polls.EstimateOnDate;
 import com.smskelley.politiface.views.CanvasDrawable;
 
 import java.util.Locale;
@@ -33,7 +34,7 @@ public class Person implements CanvasDrawable {
   private float embededPadding;
   private EstimateOnDate estimate = EstimateOnDate.EMPTY;
 
-  public Person(EstimateModel model, Resources res, @DrawableRes int drawableId,
+  public Person(ChartModel model, Resources res, @DrawableRes int drawableId,
                 Position position) {
     this.position = position;
     drawable = res.getDrawable(drawableId);
@@ -77,7 +78,8 @@ public class Person implements CanvasDrawable {
         res.getColor(R.color.shadow));
 
     model
-        .getEstimateOnDate()
+        .getEstimates()
+        .map(EstimateOnDate::fromEstimateByDate)
         .filter(estimateOnDate -> estimateOnDate != EstimateOnDate.EMPTY)
         .doOnNext(estimateOnDate -> Person.this.estimate = estimateOnDate)
         .subscribe();

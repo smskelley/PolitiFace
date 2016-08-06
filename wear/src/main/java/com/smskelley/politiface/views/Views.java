@@ -1,7 +1,7 @@
 package com.smskelley.politiface.views;
 
-import com.smskelley.politiface.application.App;
-import com.smskelley.politiface.models.Models;
+import com.smskelley.politilib.application.App;
+import com.smskelley.politilib.models.Models;
 import com.smskelley.politiface.views.background.Background;
 import com.smskelley.politiface.views.background.BackgroundPaint;
 import com.smskelley.politiface.views.hands.Cap;

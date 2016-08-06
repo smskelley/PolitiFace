@@ -2,6 +2,10 @@ package com.smskelley.politiface.application;
 
 import android.app.Application;
 
+import com.smskelley.politilib.application.App;
+import com.smskelley.politilib.application.AppModule;
+import com.smskelley.politilib.application.DaggerApp;
+
 /**
  */
 public class PolitiFaceApp extends Application {

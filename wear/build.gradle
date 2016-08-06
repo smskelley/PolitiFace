@@ -4,7 +4,7 @@ apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "24rc3"
+    buildToolsVersion "24.0.1"
 
     defaultConfig {
         applicationId "com.smskelley.politiface"
@@ -41,4 +41,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile 'org.robolectric:robolectric:3.0'
     testCompile 'org.mockito:mockito-core:1.+'
+    compile project(path: ':politilib')
 }

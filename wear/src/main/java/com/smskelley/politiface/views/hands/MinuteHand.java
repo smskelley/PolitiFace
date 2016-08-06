@@ -3,7 +3,7 @@ package com.smskelley.politiface.views.hands;
 import android.content.res.Resources;
 
 import com.smskelley.politiface.R;
-import com.smskelley.politiface.models.time.TimeModel;
+import com.smskelley.politilib.models.time.TimeModel;
 
 import javax.inject.Inject;
 

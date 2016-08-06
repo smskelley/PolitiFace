@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import com.smskelley.politiface.R;
-import com.smskelley.politiface.models.time.TimeModel;
+import com.smskelley.politilib.models.time.TimeModel;
 import com.smskelley.politiface.views.CanvasDrawable;
 
 public abstract class WatchHand implements CanvasDrawable {
@@ -83,6 +83,9 @@ public abstract class WatchHand implements CanvasDrawable {
 
   protected abstract float getRotation();
 
+  /**
+   * Length of hand as a fraction of the total width.
+   */
   protected abstract float getLength();
 
   protected abstract boolean shouldDrawInAmbient();
